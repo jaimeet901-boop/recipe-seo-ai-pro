@@ -1,0 +1,1432 @@
+/**
+ * Recipe SEO AI Pro — Design System + Admin Shell
+ * Loaded only on rsaip-* admin pages.
+ */
+
+/* ==========================================================================
+   Design tokens
+   ========================================================================== */
+
+.rsaip-app,
+.rsaip-wrap {
+	--rsaip-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	--rsaip-text: #1d2327;
+	--rsaip-text-muted: #646970;
+	--rsaip-text-soft: #8c8f94;
+	--rsaip-bg: #f0f0f1;
+	--rsaip-surface: #ffffff;
+	--rsaip-surface-2: #f6f7f7;
+	--rsaip-border: #dcdcde;
+	--rsaip-border-strong: #c3c4c7;
+	--rsaip-accent: #2271b1;
+	--rsaip-accent-hover: #135e96;
+	--rsaip-accent-soft: #f0f6fc;
+	--rsaip-success: #00a32a;
+	--rsaip-success-soft: #edfaef;
+	--rsaip-warn: #dba617;
+	--rsaip-warn-soft: #fcf9e8;
+	--rsaip-danger: #d63638;
+	--rsaip-danger-soft: #fcf0f1;
+	--rsaip-radius: 12px;
+	--rsaip-radius-sm: 8px;
+	--rsaip-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
+	--rsaip-shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.06), 0 12px 28px rgba(0, 0, 0, 0.1);
+	--rsaip-nav-w: 248px;
+	--rsaip-side-w: 280px;
+	--rsaip-space-1: 4px;
+	--rsaip-space-2: 8px;
+	--rsaip-space-3: 12px;
+	--rsaip-space-4: 16px;
+	--rsaip-space-5: 20px;
+	--rsaip-space-6: 24px;
+	--rsaip-space-8: 32px;
+	font-family: var(--rsaip-font);
+	color: var(--rsaip-text);
+	max-width: none;
+	margin: 0 0 0 -20px;
+	padding: 0;
+}
+
+@media (max-width: 782px) {
+	.rsaip-app,
+	.rsaip-wrap {
+		margin-left: -10px;
+	}
+}
+
+/* WordPress admin dark scheme */
+body.admin-color-modern .rsaip-app,
+body.admin-color-blue .rsaip-app {
+	--rsaip-accent: #2271b1;
+}
+
+@media (prefers-color-scheme: dark) {
+	body.rsaip-prefers-dark .rsaip-app {
+		--rsaip-text: #f0f0f1;
+		--rsaip-text-muted: #a7aaad;
+		--rsaip-bg: #1d2327;
+		--rsaip-surface: #2c3338;
+		--rsaip-surface-2: #23282d;
+		--rsaip-border: #3c434a;
+		--rsaip-border-strong: #50575e;
+		--rsaip-accent-soft: #1d2a36;
+		--rsaip-shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.35);
+	}
+}
+
+body.rsaip-admin-dark .rsaip-app,
+html.wp-toolbar body.admin-color-modern.rsaip-force-tokens .rsaip-app {
+	/* reserved for future WP dark admin class hooks */
+}
+
+/* Prefer WP 6.4+ dark mode when present */
+body.dark-mode .rsaip-app,
+body.is-dark-theme .rsaip-app,
+.wp-dark-mode-active .rsaip-app {
+	--rsaip-text: #f0f0f1;
+	--rsaip-text-muted: #a7aaad;
+	--rsaip-text-soft: #8c8f94;
+	--rsaip-bg: #1d2327;
+	--rsaip-surface: #2c3338;
+	--rsaip-surface-2: #23282d;
+	--rsaip-border: #3c434a;
+	--rsaip-border-strong: #50575e;
+	--rsaip-accent-soft: #1d2a36;
+	--rsaip-success-soft: #1a2e1c;
+	--rsaip-warn-soft: #2e2a14;
+	--rsaip-danger-soft: #2e1a1b;
+	--rsaip-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* ==========================================================================
+   App shell
+   ========================================================================== */
+
+.rsaip-app-shell {
+	display: grid;
+	grid-template-columns: var(--rsaip-nav-w) minmax(0, 1fr) var(--rsaip-side-w);
+	gap: 0;
+	min-height: calc(100vh - 32px);
+	background: var(--rsaip-bg);
+	border-top: 1px solid var(--rsaip-border);
+}
+
+.rsaip-app-shell--wide {
+	grid-template-columns: var(--rsaip-nav-w) minmax(0, 1fr);
+}
+
+.rsaip-app-main {
+	min-width: 0;
+	padding: var(--rsaip-space-5) var(--rsaip-space-6) var(--rsaip-space-8);
+}
+
+.rsaip-app-content {
+	display: flex;
+	flex-direction: column;
+	gap: var(--rsaip-space-4);
+}
+
+@media (max-width: 1280px) {
+	.rsaip-app-shell {
+		grid-template-columns: var(--rsaip-nav-w) minmax(0, 1fr);
+	}
+
+	.rsaip-app-sidebar {
+		display: none;
+	}
+}
+
+@media (max-width: 960px) {
+	.rsaip-app-shell,
+	.rsaip-app-shell--wide {
+		grid-template-columns: 1fr;
+	}
+
+	.rsaip-app-nav {
+		position: sticky;
+		top: 32px;
+		z-index: 20;
+		max-height: none;
+		border-right: 0;
+		border-bottom: 1px solid var(--rsaip-border);
+	}
+
+	.rsaip-app-nav-group {
+		display: none;
+	}
+
+	.rsaip-app-nav-group:first-of-type {
+		display: block;
+	}
+
+	.rsaip-app-nav-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 4px;
+	}
+
+	.rsaip-app-nav-list li {
+		margin: 0;
+	}
+
+	.rsaip-app-main {
+		padding: var(--rsaip-space-4);
+	}
+}
+
+/* ==========================================================================
+   Left navigation
+   ========================================================================== */
+
+.rsaip-app-nav {
+	background: var(--rsaip-surface);
+	border-right: 1px solid var(--rsaip-border);
+	padding: var(--rsaip-space-4) var(--rsaip-space-3) var(--rsaip-space-6);
+	overflow: auto;
+	max-height: calc(100vh - 32px);
+	position: sticky;
+	top: 32px;
+}
+
+.rsaip-app-brand {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 8px 10px 16px;
+	margin-bottom: 8px;
+	border-bottom: 1px solid var(--rsaip-border);
+}
+
+.rsaip-app-brand-mark {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	border-radius: 10px;
+	background: var(--rsaip-accent-soft);
+	color: var(--rsaip-accent);
+}
+
+.rsaip-app-brand-mark .dashicons {
+	width: 20px;
+	height: 20px;
+	font-size: 20px;
+}
+
+.rsaip-app-brand-name {
+	display: block;
+	font-size: 13px;
+	font-weight: 700;
+	line-height: 1.2;
+	color: var(--rsaip-text);
+}
+
+.rsaip-app-brand-sub {
+	display: block;
+	font-size: 11px;
+	color: var(--rsaip-text-muted);
+	margin-top: 2px;
+}
+
+.rsaip-app-nav-label {
+	margin: 14px 10px 6px;
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--rsaip-text-soft);
+}
+
+.rsaip-app-nav-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.rsaip-app-nav-link {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 10px;
+	margin: 1px 0;
+	border-radius: var(--rsaip-radius-sm);
+	color: var(--rsaip-text);
+	text-decoration: none;
+	font-size: 13px;
+	font-weight: 500;
+	line-height: 1.3;
+	transition: background 0.15s ease, color 0.15s ease;
+}
+
+.rsaip-app-nav-link .dashicons {
+	width: 16px;
+	height: 16px;
+	font-size: 16px;
+	color: var(--rsaip-text-muted);
+}
+
+.rsaip-app-nav-link:hover,
+.rsaip-app-nav-link:focus {
+	background: var(--rsaip-surface-2);
+	color: var(--rsaip-accent);
+	box-shadow: none;
+}
+
+.rsaip-app-nav-link:hover .dashicons,
+.rsaip-app-nav-link:focus .dashicons,
+.rsaip-app-nav-link.is-active .dashicons {
+	color: var(--rsaip-accent);
+}
+
+.rsaip-app-nav-link.is-active {
+	background: var(--rsaip-accent-soft);
+	color: var(--rsaip-accent-hover);
+	font-weight: 600;
+}
+
+/* ==========================================================================
+   Page header
+   ========================================================================== */
+
+.rsaip-page-header {
+	margin-bottom: var(--rsaip-space-5);
+	padding: var(--rsaip-space-5);
+	background: linear-gradient(135deg, var(--rsaip-surface) 0%, var(--rsaip-accent-soft) 100%);
+	border: 1px solid var(--rsaip-border);
+	border-radius: var(--rsaip-radius);
+	box-shadow: var(--rsaip-shadow);
+}
+
+.rsaip-breadcrumb {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px;
+	margin-bottom: 10px;
+	font-size: 12px;
+	color: var(--rsaip-text-muted);
+}
+
+.rsaip-breadcrumb a {
+	color: var(--rsaip-accent);
+	text-decoration: none;
+	font-weight: 600;
+}
+
+.rsaip-breadcrumb a:hover,
+.rsaip-breadcrumb a:focus {
+	color: var(--rsaip-accent-hover);
+	text-decoration: underline;
+}
+
+.rsaip-breadcrumb-sep {
+	opacity: 0.5;
+}
+
+.rsaip-breadcrumb-current {
+	color: var(--rsaip-text);
+	font-weight: 600;
+}
+
+.rsaip-page-header-row {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: var(--rsaip-space-4);
+	align-items: flex-start;
+}
+
+.rsaip-page-title,
+.rsaip-app h1.rsaip-page-title,
+.rsaip-wrap > h1 {
+	margin: 0;
+	padding: 0;
+	font-size: 26px;
+	font-weight: 700;
+	line-height: 1.25;
+	letter-spacing: -0.02em;
+	color: var(--rsaip-text);
+}
+
+.rsaip-page-desc {
+	margin: 8px 0 0;
+	max-width: 640px;
+	font-size: 14px;
+	line-height: 1.55;
+	color: var(--rsaip-text-muted);
+}
+
+.rsaip-page-header-meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.rsaip-header-action {
+	display: inline-flex !important;
+	align-items: center;
+	gap: 6px;
+	border-radius: var(--rsaip-radius-sm) !important;
+}
+
+.rsaip-header-action .dashicons {
+	width: 16px;
+	height: 16px;
+	font-size: 16px;
+}
+
+/* Hide legacy lone h1 if any template still prints one inside wrap incorrectly */
+.rsaip-app-shell > h1 {
+	display: none;
+}
+
+/* ==========================================================================
+   Right sidebar
+   ========================================================================== */
+
+.rsaip-app-sidebar {
+	padding: var(--rsaip-space-5) var(--rsaip-space-4) var(--rsaip-space-8);
+	border-left: 1px solid var(--rsaip-border);
+	background: var(--rsaip-surface-2);
+	display: flex;
+	flex-direction: column;
+	gap: var(--rsaip-space-3);
+	position: sticky;
+	top: 32px;
+	max-height: calc(100vh - 32px);
+	overflow: auto;
+}
+
+.rsaip-side-card {
+	background: var(--rsaip-surface);
+	border: 1px solid var(--rsaip-border);
+	border-radius: var(--rsaip-radius);
+	padding: var(--rsaip-space-4);
+	box-shadow: var(--rsaip-shadow);
+}
+
+.rsaip-side-card-title {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin: 0 0 12px;
+	font-size: 12px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--rsaip-text);
+}
+
+.rsaip-side-card-title .dashicons {
+	color: var(--rsaip-accent);
+	width: 16px;
+	height: 16px;
+	font-size: 16px;
+}
+
+.rsaip-side-stat {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 10px;
+	font-size: 13px;
+}
+
+.rsaip-side-stat-label {
+	color: var(--rsaip-text-muted);
+}
+
+.rsaip-side-stat-value {
+	font-weight: 600;
+	color: var(--rsaip-text);
+}
+
+.rsaip-side-btn {
+	width: 100%;
+	justify-content: center;
+	margin-top: 4px;
+	border-radius: var(--rsaip-radius-sm) !important;
+}
+
+.rsaip-side-tip {
+	margin: 0;
+	font-size: 13px;
+	line-height: 1.5;
+	color: var(--rsaip-text-muted);
+}
+
+.rsaip-side-links {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.rsaip-side-links a {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 0;
+	border-bottom: 1px solid var(--rsaip-border);
+	text-decoration: none;
+	color: var(--rsaip-text);
+	font-size: 13px;
+	font-weight: 500;
+}
+
+.rsaip-side-links li:last-child a {
+	border-bottom: 0;
+	padding-bottom: 0;
+}
+
+.rsaip-side-links a:hover,
+.rsaip-side-links a:focus {
+	color: var(--rsaip-accent);
+}
+
+.rsaip-side-links .dashicons {
+	width: 16px;
+	height: 16px;
+	font-size: 16px;
+	color: var(--rsaip-accent);
+}
+
+.rsaip-side-steps {
+	margin: 0;
+	padding-left: 18px;
+	font-size: 13px;
+	line-height: 1.7;
+	color: var(--rsaip-text-muted);
+}
+
+/* ==========================================================================
+   Cards / panels
+   ========================================================================== */
+
+.rsaip-panel,
+.rsaip-card {
+	background: var(--rsaip-surface);
+	border: 1px solid var(--rsaip-border);
+	border-radius: var(--rsaip-radius);
+	box-shadow: var(--rsaip-shadow);
+	transition: box-shadow 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.rsaip-panel {
+	padding: var(--rsaip-space-5);
+	margin: 0 0 var(--rsaip-space-4);
+}
+
+.rsaip-panel:hover {
+	box-shadow: var(--rsaip-shadow-hover);
+}
+
+.rsaip-panel > h2,
+.rsaip-panel > h3 {
+	margin: 0 0 var(--rsaip-space-4);
+	padding: 0;
+	font-size: 15px;
+	font-weight: 700;
+	line-height: 1.3;
+	color: var(--rsaip-text);
+}
+
+.rsaip-cards {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: var(--rsaip-space-3);
+}
+
+@media (max-width: 1100px) {
+	.rsaip-cards {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 560px) {
+	.rsaip-cards {
+		grid-template-columns: 1fr;
+	}
+}
+
+.rsaip-card {
+	padding: var(--rsaip-space-4);
+}
+
+.rsaip-card:hover {
+	transform: translateY(-1px);
+	box-shadow: var(--rsaip-shadow-hover);
+	border-color: var(--rsaip-border-strong);
+}
+
+.rsaip-card .rsaip-k,
+.rsaip-card .rsaip-card-label {
+	color: var(--rsaip-text-muted);
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+	margin-bottom: 8px;
+}
+
+.rsaip-card .rsaip-v,
+.rsaip-card .rsaip-card-value {
+	font-size: 28px;
+	font-weight: 700;
+	line-height: 1.1;
+	color: var(--rsaip-text);
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.rsaip-actions {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	flex-wrap: wrap;
+	margin: 0 0 var(--rsaip-space-4);
+}
+
+.rsaip-inline {
+	display: inline-flex;
+	gap: 8px;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.rsaip-app .button,
+.rsaip-app .button-primary,
+.rsaip-app .button-secondary {
+	border-radius: var(--rsaip-radius-sm);
+	min-height: 36px;
+	padding: 0 14px;
+	font-weight: 600;
+	transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.rsaip-app .button-primary {
+	background: var(--rsaip-accent);
+	border-color: var(--rsaip-accent);
+	box-shadow: none;
+}
+
+.rsaip-app .button-primary:hover,
+.rsaip-app .button-primary:focus {
+	background: var(--rsaip-accent-hover);
+	border-color: var(--rsaip-accent-hover);
+}
+
+.rsaip-app .button-link {
+	font-weight: 600;
+}
+
+.rsaip-btn-danger,
+.rsaip-app .button.rsaip-btn-danger {
+	background: var(--rsaip-danger-soft);
+	border-color: #f1aeb5;
+	color: #8a2424;
+}
+
+.rsaip-btn-ghost,
+.rsaip-app .button.rsaip-btn-ghost {
+	background: transparent;
+	border-color: transparent;
+	color: var(--rsaip-accent);
+	box-shadow: none;
+}
+
+.rsaip-app .button:disabled,
+.rsaip-app .button[disabled] {
+	opacity: 0.55;
+}
+
+.rsaip-app .button.is-busy,
+.rsaip-app .button.rsaip-is-loading {
+	position: relative;
+	pointer-events: none;
+	opacity: 0.75;
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+.rsaip-form label,
+.rsaip-app label {
+	display: block;
+	font-weight: 600;
+	font-size: 12px;
+	margin: 0 0 6px;
+	color: var(--rsaip-text);
+}
+
+.rsaip-form input[type="text"],
+.rsaip-form input[type="email"],
+.rsaip-form input[type="url"],
+.rsaip-form input[type="password"],
+.rsaip-form input[type="number"],
+.rsaip-form input[type="search"],
+.rsaip-form textarea,
+.rsaip-form select,
+.rsaip-app .rsaip-input,
+.rsaip-app input[type="text"],
+.rsaip-app input[type="email"],
+.rsaip-app input[type="url"],
+.rsaip-app input[type="password"],
+.rsaip-app input[type="number"],
+.rsaip-app input[type="search"],
+.rsaip-app textarea,
+.rsaip-app select {
+	width: 100%;
+	max-width: 100%;
+	border-radius: var(--rsaip-radius-sm);
+	border-color: var(--rsaip-border);
+	background: var(--rsaip-surface);
+	color: var(--rsaip-text);
+	box-shadow: none;
+}
+
+.rsaip-app input:focus,
+.rsaip-app textarea:focus,
+.rsaip-app select:focus {
+	border-color: var(--rsaip-accent);
+	box-shadow: 0 0 0 1px var(--rsaip-accent);
+	outline: none;
+}
+
+.rsaip-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: var(--rsaip-space-4);
+}
+
+@media (max-width: 900px) {
+	.rsaip-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+.rsaip-checklist label {
+	display: block;
+	margin: 6px 0;
+	font-weight: 400;
+}
+
+.rsaip-field-hint,
+.rsaip-note {
+	color: var(--rsaip-text-muted);
+	font-size: 13px;
+	line-height: 1.5;
+	margin-top: 8px;
+}
+
+.rsaip-sub {
+	color: var(--rsaip-text-muted);
+	font-size: 12px;
+	margin-top: 4px;
+}
+
+.rsaip-error,
+.rsaip-app .rsaip-error {
+	color: var(--rsaip-danger);
+}
+
+/* ==========================================================================
+   Badges / pills / alerts
+   ========================================================================== */
+
+.rsaip-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 5px 10px;
+	border-radius: 999px;
+	background: var(--rsaip-surface-2);
+	border: 1px solid var(--rsaip-border);
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 1.3;
+	color: var(--rsaip-text);
+}
+
+.rsaip-badge .dashicons {
+	width: 14px;
+	height: 14px;
+	font-size: 14px;
+}
+
+.rsaip-badge-ok,
+.rsaip-badge.rsaip-badge-ok {
+	background: var(--rsaip-success-soft);
+	border-color: #b8e6bf;
+	color: #007017;
+}
+
+.rsaip-badge-warn,
+.rsaip-badge.rsaip-badge-warn {
+	background: var(--rsaip-warn-soft);
+	border-color: #f0e1a3;
+	color: #614200;
+}
+
+.rsaip-badge-error,
+.rsaip-badge.rsaip-badge-error {
+	background: var(--rsaip-danger-soft);
+	border-color: #f1aeb5;
+	color: #8a2424;
+}
+
+.rsaip-badge-provider {
+	background: var(--rsaip-accent-soft);
+	border-color: #c5d9ed;
+	color: #135e96;
+}
+
+.rsaip-badge-project {
+	background: #f3e8ff;
+	border-color: #d8b4fe;
+	color: #6b21a8;
+}
+
+.rsaip-pill {
+	display: inline-block;
+	padding: 3px 8px;
+	border-radius: 999px;
+	background: var(--rsaip-surface-2);
+	font-size: 12px;
+	margin: 2px 4px 2px 0;
+}
+
+.rsaip-pill-ok {
+	background: var(--rsaip-success-soft);
+	color: #116329;
+}
+
+.rsaip-pill-warn {
+	background: var(--rsaip-warn-soft);
+	color: #8a5a00;
+}
+
+.rsaip-alert,
+.rsaip-notice-box {
+	display: flex;
+	gap: 10px;
+	align-items: flex-start;
+	padding: 12px 14px;
+	border-radius: var(--rsaip-radius-sm);
+	border: 1px solid var(--rsaip-border);
+	background: var(--rsaip-surface-2);
+	font-size: 13px;
+	line-height: 1.5;
+}
+
+.rsaip-alert-success {
+	background: var(--rsaip-success-soft);
+	border-color: #b8e6bf;
+	color: #007017;
+}
+
+.rsaip-alert-warning {
+	background: var(--rsaip-warn-soft);
+	border-color: #f0e1a3;
+	color: #614200;
+}
+
+.rsaip-alert-error {
+	background: var(--rsaip-danger-soft);
+	border-color: #f1aeb5;
+	color: #8a2424;
+}
+
+.rsaip-alert-info {
+	background: var(--rsaip-accent-soft);
+	border-color: #c5d9ed;
+	color: #135e96;
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+.rsaip-table-scroll {
+	overflow: auto;
+	max-width: 100%;
+}
+
+.rsaip-table-panel {
+	padding: 0;
+	overflow: hidden;
+}
+
+.rsaip-table,
+.rsaip-app table.widefat {
+	border: 1px solid var(--rsaip-border);
+	border-radius: var(--rsaip-radius);
+	overflow: hidden;
+	border-collapse: separate;
+	border-spacing: 0;
+	background: var(--rsaip-surface);
+	box-shadow: var(--rsaip-shadow);
+	width: 100%;
+}
+
+.rsaip-table-panel .rsaip-table,
+.rsaip-table-panel table.widefat {
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+}
+
+.rsaip-table thead th,
+.rsaip-app table.widefat thead th {
+	position: sticky;
+	top: 0;
+	z-index: 1;
+	background: var(--rsaip-surface-2);
+	border-bottom: 1px solid var(--rsaip-border);
+	font-size: 11px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--rsaip-text-muted);
+	padding: 12px 14px;
+}
+
+.rsaip-table td,
+.rsaip-app table.widefat td {
+	vertical-align: top;
+	padding: 12px 14px;
+	border-bottom: 1px solid var(--rsaip-border);
+	font-size: 13px;
+}
+
+.rsaip-table tbody tr:hover td,
+.rsaip-app table.widefat tbody tr:hover td {
+	background: var(--rsaip-accent-soft);
+}
+
+.rsaip-table tbody tr:last-child td,
+.rsaip-app table.widefat tbody tr:last-child td {
+	border-bottom: 0;
+}
+
+/* ==========================================================================
+   Progress / loading / empty
+   ========================================================================== */
+
+.rsaip-progress {
+	height: 8px;
+	border-radius: 999px;
+	background: #e2e4e7;
+	overflow: hidden;
+}
+
+.rsaip-progress > span {
+	display: block;
+	height: 100%;
+	border-radius: inherit;
+	background: var(--rsaip-accent);
+}
+
+.rsaip-loading::before {
+	content: "Loading…";
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	color: var(--rsaip-text-muted);
+	padding: 14px 0;
+	font-size: 13px;
+}
+
+.rsaip-loading::after {
+	content: "";
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	margin-left: 8px;
+	border: 2px solid var(--rsaip-border-strong);
+	border-top-color: var(--rsaip-accent);
+	border-radius: 50%;
+	animation: rsaip-spin 0.7s linear infinite;
+	vertical-align: middle;
+}
+
+@keyframes rsaip-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.rsaip-empty {
+	text-align: center;
+	padding: 36px 20px;
+	color: var(--rsaip-text-muted);
+	border: 1px dashed var(--rsaip-border);
+	border-radius: var(--rsaip-radius);
+	background: var(--rsaip-surface-2);
+}
+
+.rsaip-empty .dashicons {
+	display: block;
+	margin: 0 auto 10px;
+	width: 32px;
+	height: 32px;
+	font-size: 32px;
+	color: var(--rsaip-text-soft);
+}
+
+/* ==========================================================================
+   Tabs / timeline / misc
+   ========================================================================== */
+
+.rsaip-tabs {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin-bottom: var(--rsaip-space-3);
+}
+
+.rsaip-timeline {
+	list-style: none;
+	margin: 0;
+	padding: 0 0 0 18px;
+	border-left: 2px solid var(--rsaip-border);
+}
+
+.rsaip-timeline li {
+	position: relative;
+	margin: 0 0 12px;
+	padding: 12px 14px;
+	background: var(--rsaip-surface);
+	border: 1px solid var(--rsaip-border);
+	border-radius: var(--rsaip-radius-sm);
+}
+
+.rsaip-timeline li::before {
+	content: "";
+	position: absolute;
+	left: -24px;
+	top: 18px;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: var(--rsaip-accent);
+	box-shadow: 0 0 0 2px var(--rsaip-surface);
+}
+
+.rsaip-thumb {
+	width: 56px;
+	height: 56px;
+	object-fit: cover;
+	border-radius: var(--rsaip-radius-sm);
+	margin-right: 10px;
+	border: 1px solid var(--rsaip-border);
+}
+
+.rsaip-pre {
+	background: #0a0a0a;
+	color: #e6e6e6;
+	padding: 12px;
+	border-radius: var(--rsaip-radius-sm);
+	overflow: auto;
+}
+
+.rsaip-list {
+	margin-left: 18px;
+}
+
+.rsaip-performance .rsaip-v {
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.rsaip-perf-grid {
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.rsaip-report-grid {
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* Settings section rhythm */
+.rsaip-app .rsaip-panel .rsaip-grid > div {
+	min-width: 0;
+}
+
+.rsaip-settings-section {
+	padding: 0;
+	overflow: hidden;
+}
+
+.rsaip-settings-head {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 14px 18px;
+	border-bottom: 1px solid var(--rsaip-border);
+	background: var(--rsaip-surface-2);
+}
+
+.rsaip-settings-head .dashicons {
+	color: var(--rsaip-accent);
+}
+
+.rsaip-settings-head h2 {
+	margin: 0 !important;
+	font-size: 15px;
+}
+
+.rsaip-settings-section > .rsaip-note,
+.rsaip-settings-section > .rsaip-grid,
+.rsaip-settings-section > label,
+.rsaip-settings-section > input,
+.rsaip-settings-section > p {
+	margin-left: 18px;
+	margin-right: 18px;
+}
+
+.rsaip-settings-section > .rsaip-grid {
+	padding-bottom: 18px;
+}
+
+.rsaip-settings-section > .rsaip-note {
+	margin-top: 14px;
+}
+
+.rsaip-settings-span-2 {
+	grid-column: 1 / -1;
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+
+.rsaip-app a:focus,
+.rsaip-app button:focus,
+.rsaip-app input:focus,
+.rsaip-app select:focus,
+.rsaip-app textarea:focus {
+	outline: 2px solid transparent;
+}
+
+.rsaip-app .button:focus {
+	box-shadow: 0 0 0 1px #fff, 0 0 0 3px var(--rsaip-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.rsaip-panel,
+	.rsaip-card,
+	.rsaip-app-nav-link,
+	.rsaip-loading::after {
+		transition: none !important;
+		animation: none !important;
+	}
+}
+
+/* ==========================================================================
+   Recipe card / generated article (preserved public-facing styles)
+   ========================================================================== */
+
+.rsaip-recipe-card {
+	border: 1px solid var(--rsaip-border);
+	border-radius: 18px;
+	padding: 22px;
+	background: var(--rsaip-surface);
+	box-shadow: var(--rsaip-shadow);
+	margin: 18px 0;
+}
+
+.rsaip-generated-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 12px 0 16px;
+}
+
+.rsaip-generated-table th,
+.rsaip-generated-table td {
+	border: 1px solid var(--rsaip-border);
+	padding: 10px 12px;
+	text-align: left;
+	vertical-align: top;
+}
+
+.rsaip-generated-table th {
+	width: 180px;
+	background: var(--rsaip-surface-2);
+}
+
+.rsaip-recipe-card__hero {
+	display: grid;
+	grid-template-columns: minmax(220px, 320px) 1fr;
+	gap: 22px;
+	align-items: start;
+	margin-bottom: 22px;
+}
+
+.rsaip-recipe-card__hero.rsaip-recipe-card__hero--no-image {
+	grid-template-columns: 1fr;
+}
+
+.rsaip-recipe-card__media {
+	margin: 0;
+}
+
+.rsaip-recipe-card__media img {
+	display: block;
+	width: 100%;
+	height: auto;
+	border-radius: 14px;
+	object-fit: cover;
+	box-shadow: var(--rsaip-shadow);
+}
+
+.rsaip-recipe-card__eyebrow {
+	display: inline-block;
+	font-size: 12px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var(--rsaip-accent);
+	background: var(--rsaip-accent-soft);
+	padding: 6px 10px;
+	border-radius: 999px;
+	margin-bottom: 10px;
+}
+
+.rsaip-recipe-card__title {
+	font-size: 30px;
+	line-height: 1.2;
+	margin: 0 0 10px;
+}
+
+.rsaip-recipe-card__desc {
+	font-size: 15px;
+	line-height: 1.7;
+	color: var(--rsaip-text-muted);
+	margin: 0 0 16px;
+}
+
+.rsaip-recipe-card__stats {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	gap: 12px;
+}
+
+.rsaip-recipe-card__stat {
+	background: var(--rsaip-surface-2);
+	border: 1px solid var(--rsaip-border);
+	border-radius: 14px;
+	padding: 12px 14px;
+}
+
+.rsaip-recipe-card__stat-label {
+	display: block;
+	font-size: 12px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: var(--rsaip-text-muted);
+	margin-bottom: 6px;
+}
+
+.rsaip-recipe-card__stat-value {
+	display: block;
+	font-size: 15px;
+	font-weight: 600;
+	color: var(--rsaip-text);
+}
+
+.rsaip-recipe-card__grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 20px;
+}
+
+.rsaip-recipe-card__section {
+	background: var(--rsaip-surface);
+	border: 1px solid var(--rsaip-border);
+	border-radius: 16px;
+	padding: 18px;
+}
+
+.rsaip-recipe-card__section h3 {
+	margin-top: 0;
+	margin-bottom: 14px;
+	font-size: 20px;
+}
+
+.rsaip-recipe-card__list,
+.rsaip-recipe-card__steps {
+	margin: 0;
+	padding-left: 22px;
+}
+
+.rsaip-recipe-card__list li,
+.rsaip-recipe-card__steps li {
+	margin-bottom: 10px;
+	line-height: 1.7;
+}
+
+.rsaip-recipe-card__notes {
+	margin-top: 20px;
+	padding: 16px 18px;
+	border-radius: 14px;
+	background: #fff7ed;
+	border: 1px solid #fed7aa;
+	line-height: 1.7;
+}
+
+@media (max-width: 782px) {
+	.rsaip-recipe-card__hero,
+	.rsaip-recipe-card__grid {
+		grid-template-columns: 1fr;
+	}
+
+	.rsaip-recipe-card__title {
+		font-size: 24px;
+	}
+}
+
+.rsaip-generated-article {
+	background: var(--rsaip-surface);
+	border: 1px solid var(--rsaip-border);
+	border-radius: 14px;
+	padding: 20px;
+}
+
+.rsaip-generated-article h1,
+.rsaip-generated-article h2,
+.rsaip-generated-article h3 {
+	line-height: 1.3;
+}
+
+.rsaip-generated-article p {
+	line-height: 1.8;
+	color: var(--rsaip-text);
+}
+
+.rsaip-generated-figure {
+	margin: 18px 0;
+}
+
+.rsaip-generated-figure img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+	border-radius: 12px;
+}
+
+.rsaip-generated-figure figcaption {
+	margin-top: 8px;
+	color: var(--rsaip-text-muted);
+	font-size: 13px;
+}
+
+.rsaip-image-prompt {
+	border: 1px dashed var(--rsaip-border-strong);
+	border-radius: 12px;
+	padding: 14px 16px;
+	background: var(--rsaip-surface-2);
+	margin: 18px 0;
+}
+
+.rsaip-image-prompt p {
+	margin: 6px 0;
+	color: var(--rsaip-text);
+}
+
+.rsaip-recipe-card__header-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 18px;
+	margin-bottom: 16px;
+	flex-wrap: wrap;
+}
+
+.rsaip-recipe-meta {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	min-width: 0;
+}
+
+.rsaip-rating {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	flex-wrap: wrap;
+	min-width: 0;
+}
+
+.rsaip-stars .rsaip-star {
+	font-size: 18px;
+	color: #f59e0b;
+}
+
+.rsaip-stars .rsaip-star-empty {
+	color: #cbd5e1;
+}
+
+.rsaip-rating-value {
+	font-weight: 700;
+	font-size: 16px;
+	color: var(--rsaip-text);
+}
+
+.rsaip-review-count {
+	color: var(--rsaip-text-muted);
+	font-size: 13px;
+}
+
+.rsaip-recipe-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	justify-content: flex-end;
+	align-items: center;
+	min-width: 0;
+}
+
+.rsaip-recipe-actions .button {
+	padding: 8px 14px;
+	font-size: 13px;
+	min-width: 92px;
+	border-radius: 10px;
+	background: var(--rsaip-surface);
+	border: 1px solid var(--rsaip-border);
+	color: var(--rsaip-text);
+	box-shadow: none;
+}
+
+.rsaip-recipe-actions .button:hover {
+	background: var(--rsaip-surface-2);
+}
+
+.rsaip-byline {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	color: var(--rsaip-text-muted);
+	font-size: 13px;
+	align-items: flex-start;
+}
+
+.rsaip-byline .rsaip-author {
+	font-weight: 600;
+}
+
+.rsaip-recipe-action-status {
+	font-size: 13px;
+	color: var(--rsaip-text);
+	background: var(--rsaip-surface-2);
+	border: 1px solid var(--rsaip-border);
+	border-radius: 12px;
+	padding: 10px 12px;
+	margin-top: 10px;
+}

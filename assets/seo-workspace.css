@@ -1,0 +1,123 @@
+/* Unified SEO Workspace — module styles (design-system tokens) */
+.rsaip-ws-project-form {
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+}
+
+.rsaip-ws-project-name {
+	margin-left: 4px;
+}
+
+.rsaip-ws-workflow {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 4px;
+	align-items: center;
+}
+
+.rsaip-ws-step {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	margin: 0;
+}
+
+.rsaip-ws-step-link {
+	display: inline-block;
+	padding: 8px 12px;
+	background: var(--rsaip-surface, #fff);
+	border: 1px solid var(--rsaip-border-strong, #c3c4c7);
+	border-radius: var(--rsaip-radius-sm, 8px);
+	text-decoration: none;
+	color: var(--rsaip-text, #1d2327);
+	font-weight: 600;
+	box-shadow: var(--rsaip-shadow, none);
+	transition: border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.rsaip-ws-step-link:hover {
+	border-color: var(--rsaip-accent, #2271b1);
+	color: var(--rsaip-accent, #2271b1);
+	box-shadow: var(--rsaip-shadow-hover, none);
+}
+
+.rsaip-ws-arrow {
+	color: #646970;
+	padding: 0 2px;
+}
+
+.rsaip-ws-next {
+	font-size: 12px;
+	color: #2271b1;
+	text-decoration: none;
+}
+
+.rsaip-ws-widgets {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+	gap: 12px;
+}
+
+.rsaip-ws-widget {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	padding: 14px;
+	background: var(--rsaip-surface, #fff);
+	border: 1px solid var(--rsaip-border, #dcdcde);
+	border-radius: var(--rsaip-radius, 12px);
+	text-decoration: none;
+	color: var(--rsaip-text, #1d2327);
+	min-height: 110px;
+	box-shadow: var(--rsaip-shadow, none);
+	transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.rsaip-ws-widget:hover {
+	border-color: var(--rsaip-accent, #2271b1);
+	box-shadow: var(--rsaip-shadow-hover, 0 0 0 1px #2271b1);
+	transform: translateY(-1px);
+}
+
+.rsaip-ws-widget-label {
+	font-weight: 600;
+	font-size: 14px;
+}
+
+.rsaip-ws-widget-count {
+	font-size: 22px;
+	line-height: 1.2;
+	font-weight: 700;
+}
+
+.rsaip-ws-widget-count .rsaip-sub {
+	display: block;
+	font-size: 12px;
+	font-weight: 400;
+}
+
+.rsaip-ws-widget-desc {
+	font-size: 12px;
+	color: #646970;
+	margin-top: auto;
+}
+
+.rsaip-ws-quick {
+	margin: 0;
+	padding-left: 1.2em;
+}
+
+.rsaip-ws-quick li {
+	margin: 0 0 8px;
+}
+
+@media (max-width: 782px) {
+	.rsaip-ws-workflow {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+}

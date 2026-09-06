@@ -1,0 +1,387 @@
+/* AI Recipe Assistant — module styles (design-system tokens) */
+
+.rsaip-rai-layout {
+	display: grid;
+	grid-template-columns: 280px minmax(0, 1fr) 260px;
+	gap: var(--rsaip-space-4, 16px);
+	align-items: start;
+}
+
+.rsaip-rai-layout > .rsaip-panel {
+	margin: 0;
+}
+
+.rsaip-rai-controls label {
+	display: block;
+	font-weight: 600;
+	margin-top: 10px;
+	margin-bottom: 4px;
+	font-size: 12px;
+}
+
+.rsaip-rai-compare-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 12px;
+}
+
+.rsaip-rai-pre {
+	background: var(--rsaip-surface-2, #f6f7f7);
+	border: 1px solid var(--rsaip-border, #dcdcde);
+	border-radius: var(--rsaip-radius-sm, 8px);
+	padding: 12px;
+	max-height: 280px;
+	overflow: auto;
+	white-space: pre-wrap;
+	word-break: break-word;
+	font-size: 12px;
+	line-height: 1.45;
+	margin: 0 0 12px;
+}
+
+.rsaip-rai-runs {
+	list-style: none;
+	margin: 0;
+	padding: 0 0 0 16px;
+	border-left: 2px solid var(--rsaip-border, #dcdcde);
+}
+
+.rsaip-rai-runs li {
+	position: relative;
+	padding: 10px 12px;
+	margin: 0 0 10px;
+	border: 1px solid var(--rsaip-border, #dcdcde);
+	border-radius: var(--rsaip-radius-sm, 8px);
+	background: var(--rsaip-surface, #fff);
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 4px;
+	box-shadow: var(--rsaip-shadow, none);
+}
+
+.rsaip-rai-runs li::before {
+	content: "";
+	position: absolute;
+	left: -21px;
+	top: 16px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--rsaip-accent, #2271b1);
+}
+
+.rsaip-rai-scores {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+	gap: 8px;
+	margin-bottom: 12px;
+}
+
+.rsaip-rai-score {
+	border: 1px solid var(--rsaip-border, #dcdcde);
+	border-radius: var(--rsaip-radius-sm, 8px);
+	padding: 10px 12px;
+	background: linear-gradient(180deg, var(--rsaip-accent-soft, #f0f6fc), var(--rsaip-surface, #fff));
+}
+
+.rsaip-rai-score strong {
+	display: block;
+	font-size: 1.35em;
+	letter-spacing: -0.02em;
+}
+
+.rsaip-rai-source-type {
+	border: 1px solid var(--rsaip-border, #dcdcde);
+	border-radius: var(--rsaip-radius-sm, 8px);
+	padding: 10px 12px;
+	margin: 0 0 12px;
+}
+
+.rsaip-rai-source-type legend {
+	padding: 0 6px;
+	font-weight: 700;
+	font-size: 12px;
+}
+
+.rsaip-rai-source-option {
+	display: flex !important;
+	align-items: center;
+	gap: 8px;
+	font-weight: 500 !important;
+	margin: 6px 0 0 !important;
+}
+
+.rsaip-rai-source-panel {
+	margin-bottom: 8px;
+}
+
+/* Professional post picker */
+.rsaip-rai-picker {
+	border: 1px solid var(--rsaip-border, #dcdcde);
+	border-radius: 10px;
+	background: var(--rsaip-surface, #fff);
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.rsaip-rai-picker-search {
+	position: relative;
+}
+
+.rsaip-rai-picker-spinner {
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	width: 16px;
+	height: 16px;
+	margin-top: -8px;
+	border: 2px solid #cbd5e1;
+	border-top-color: #0f766e;
+	border-radius: 50%;
+	animation: rsaip-rai-spin 0.7s linear infinite;
+}
+
+@keyframes rsaip-rai-spin {
+	to { transform: rotate(360deg); }
+}
+
+.rsaip-rai-picker-filters {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 6px;
+}
+
+.rsaip-rai-picker-filters select {
+	width: 100%;
+	max-width: 100%;
+}
+
+.rsaip-rai-filter-check {
+	grid-column: 1 / -1;
+	display: flex !important;
+	align-items: center;
+	gap: 6px;
+	font-weight: 500 !important;
+	margin: 0 !important;
+}
+
+.rsaip-rai-picker-results {
+	max-height: 320px;
+	overflow: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	outline: none;
+}
+
+.rsaip-rai-picker-empty {
+	padding: 18px 12px;
+	text-align: center;
+	color: #64748b;
+	font-size: 12px;
+	background: #f8fafc;
+	border-radius: 8px;
+}
+
+.rsaip-rai-picker-card {
+	display: grid;
+	grid-template-columns: 56px 1fr;
+	gap: 10px;
+	padding: 8px;
+	border: 1px solid #e2e8f0;
+	border-radius: 8px;
+	background: #fff;
+	cursor: pointer;
+	text-align: left;
+}
+
+.rsaip-rai-picker-card:hover,
+.rsaip-rai-picker-card:focus,
+.rsaip-rai-picker-card.is-selected {
+	border-color: #0f766e;
+	box-shadow: 0 0 0 1px rgba(15, 118, 110, 0.25);
+}
+
+.rsaip-rai-picker-thumb,
+.rsaip-rai-picker-thumb img,
+.rsaip-rai-picker-thumb-ph {
+	width: 56px;
+	height: 56px;
+	border-radius: 6px;
+	object-fit: cover;
+	background: #e2e8f0;
+	display: block;
+}
+
+.rsaip-rai-picker-title {
+	font-size: 13px;
+	color: #0f172a;
+}
+
+.rsaip-rai-picker-title-row {
+	display: flex;
+	justify-content: space-between;
+	gap: 6px;
+	align-items: flex-start;
+}
+
+.rsaip-rai-picker-meta,
+.rsaip-rai-picker-flags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin-top: 4px;
+	font-size: 11px;
+	color: #64748b;
+}
+
+.rsaip-rai-picker-meta .status {
+	font-weight: 700;
+	color: #0f172a;
+}
+
+.rsaip-rai-picker-meta .status-publish { color: #0f766e; }
+.rsaip-rai-picker-meta .status-draft { color: #b45309; }
+.rsaip-rai-picker-meta .status-private { color: #7c3aed; }
+
+.rsaip-rai-picker-flags .is-yes { color: #0f766e; font-weight: 600; }
+.rsaip-rai-picker-flags .is-no { color: #94a3b8; }
+
+.rsaip-rai-picker-card.is-skeleton .sk {
+	background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+	background-size: 200% 100%;
+	animation: rsaip-rai-shimmer 1.2s infinite;
+	border-radius: 4px;
+}
+
+.rsaip-rai-picker-card.is-skeleton .sk-line {
+	height: 10px;
+	margin-bottom: 6px;
+}
+
+.rsaip-rai-picker-card.is-skeleton .sk-line.short { width: 55%; }
+.rsaip-rai-picker-card.is-skeleton .rsaip-rai-picker-thumb.sk { width: 56px; height: 56px; }
+
+@keyframes rsaip-rai-shimmer {
+	0% { background-position: 200% 0; }
+	100% { background-position: -200% 0; }
+}
+
+.rsaip-rai-picker-pager {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	font-size: 12px;
+}
+
+.rsaip-rai-picker-preview {
+	display: grid;
+	grid-template-columns: 88px 1fr;
+	gap: 10px;
+	padding-top: 10px;
+	border-top: 1px dashed #cbd5e1;
+}
+
+.rsaip-rai-preview-media img,
+.rsaip-rai-preview-placeholder {
+	width: 88px;
+	height: 88px;
+	border-radius: 8px;
+	object-fit: cover;
+	background: #e2e8f0;
+	display: block;
+}
+
+.rsaip-rai-preview-body h3 {
+	margin: 0 0 4px;
+	font-size: 14px;
+}
+
+.rsaip-rai-preview-meta {
+	margin: 6px 0;
+	padding: 0;
+	list-style: none;
+	font-size: 11px;
+	color: #475569;
+}
+
+.rsaip-rai-preview-meta li {
+	margin: 0 0 2px;
+}
+
+.rsaip-rai-preview-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	align-items: center;
+}
+
+.rsaip-rai-shelf h4 {
+	margin: 0 0 6px;
+	font-size: 12px;
+}
+
+.rsaip-rai-shelf-row {
+	display: flex;
+	gap: 6px;
+	overflow-x: auto;
+	padding-bottom: 4px;
+}
+
+.rsaip-rai-shelf-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	border: 1px solid #e2e8f0;
+	background: #fff;
+	border-radius: 999px;
+	padding: 4px 10px 4px 4px;
+	cursor: pointer;
+	white-space: nowrap;
+	font-size: 11px;
+}
+
+.rsaip-rai-shelf-chip img,
+.rsaip-rai-shelf-chip .ph {
+	width: 22px;
+	height: 22px;
+	border-radius: 50%;
+	object-fit: cover;
+	background: #e2e8f0;
+	display: inline-block;
+}
+
+@media (max-width: 782px) {
+	.rsaip-rai-picker-filters {
+		grid-template-columns: 1fr;
+	}
+
+	.rsaip-rai-picker-preview {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (prefers-contrast: more) {
+	.rsaip-rai-picker-card,
+	.rsaip-rai-picker {
+		border-width: 2px;
+	}
+
+	.rsaip-rai-picker-title {
+		color: #000;
+	}
+}
+
+@media (max-width: 1200px) {
+	.rsaip-rai-layout {
+		grid-template-columns: 1fr;
+	}
+
+	.rsaip-rai-compare-grid {
+		grid-template-columns: 1fr;
+	}
+}

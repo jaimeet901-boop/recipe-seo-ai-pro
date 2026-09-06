@@ -1,0 +1,17 @@
+{
+	"name": "recipe-seo-ai-pro/plugin",
+	"description": "Recipe SEO AI Pro WordPress plugin",
+	"type": "wordpress-plugin",
+	"license": "GPL-2.0-or-later",
+	"require": {
+		"php": ">=7.4"
+	},
+	"autoload": {
+		"psr-4": {
+			"RecipeSeoAiPro\\": "src/"
+		}
+	},
+	"config": {
+		"sort-packages": true
+	}
+}

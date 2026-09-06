@@ -1,0 +1,231 @@
+.rsaip-recipe-card {
+	border: 1px solid #dcdcde;
+	border-radius: 18px;
+	padding: 22px;
+	background: #fff;
+	box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+	margin: 18px 0;
+}
+
+.rsaip-recipe-card__hero {
+	display: grid;
+	grid-template-columns: minmax(220px, 320px) 1fr;
+	gap: 22px;
+	align-items: start;
+	margin-bottom: 22px;
+}
+
+.rsaip-recipe-card__hero.rsaip-recipe-card__hero--no-image {
+	grid-template-columns: 1fr;
+}
+
+.rsaip-recipe-card__media {
+	margin: 0;
+}
+
+.rsaip-recipe-card__media img {
+	display: block;
+	width: 100%;
+	height: auto;
+	border-radius: 14px;
+	object-fit: cover;
+	box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+}
+
+.rsaip-recipe-card__eyebrow {
+	display: inline-block;
+	font-size: 12px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: #2563eb;
+	background: #eff6ff;
+	padding: 6px 10px;
+	border-radius: 999px;
+	margin-bottom: 10px;
+}
+
+.rsaip-recipe-card__title {
+	font-size: 30px;
+	line-height: 1.2;
+	margin: 0 0 10px;
+}
+
+.rsaip-recipe-card__desc {
+	font-size: 15px;
+	line-height: 1.7;
+	color: #475569;
+	margin: 0 0 16px;
+}
+
+.rsaip-recipe-card__header-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 18px;
+	margin-bottom: 16px;
+	flex-wrap: wrap;
+}
+
+.rsaip-recipe-meta {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	min-width: 0;
+}
+
+.rsaip-rating {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	flex-wrap: wrap;
+	min-width: 0;
+}
+
+.rsaip-stars .rsaip-star {
+	font-size: 18px;
+	color: #f59e0b;
+}
+
+.rsaip-stars .rsaip-star-empty {
+	color: #cbd5e1;
+}
+
+.rsaip-rating-value {
+	font-weight: 700;
+	font-size: 16px;
+	color: #0f172a;
+}
+
+.rsaip-review-count {
+	color: #64748b;
+	font-size: 13px;
+}
+
+.rsaip-recipe-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	justify-content: flex-end;
+	align-items: center;
+	min-width: 0;
+}
+
+.rsaip-recipe-actions .button {
+	padding: 8px 14px;
+	font-size: 13px;
+	min-width: 92px;
+	border-radius: 10px;
+	background: #ffffff;
+	border: 1px solid #e2e8f0;
+	color: #0f172a;
+	box-shadow: none;
+}
+
+.rsaip-recipe-actions .button:hover {
+	background: #f8fafc;
+}
+
+.rsaip-byline {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	color: #475569;
+	font-size: 13px;
+	align-items: flex-start;
+}
+
+.rsaip-byline .rsaip-author {
+	font-weight: 600;
+}
+
+.rsaip-recipe-card__stats {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	gap: 12px;
+}
+
+.rsaip-recipe-card__stat {
+	background: #f8fafc;
+	border: 1px solid #e2e8f0;
+	border-radius: 14px;
+	padding: 12px 14px;
+}
+
+.rsaip-recipe-card__stat-label {
+	display: block;
+	font-size: 12px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: #64748b;
+	margin-bottom: 6px;
+}
+
+.rsaip-recipe-card__stat-value {
+	display: block;
+	font-size: 15px;
+	font-weight: 600;
+	color: #0f172a;
+}
+
+.rsaip-recipe-card__grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 20px;
+}
+
+.rsaip-recipe-card__section {
+	background: #ffffff;
+	border: 1px solid #e5e7eb;
+	border-radius: 16px;
+	padding: 18px;
+}
+
+.rsaip-recipe-card__section h3 {
+	margin-top: 0;
+	margin-bottom: 14px;
+	font-size: 20px;
+}
+
+.rsaip-recipe-card__list,
+.rsaip-recipe-card__steps {
+	margin: 0;
+	padding-left: 22px;
+}
+
+.rsaip-recipe-card__list li,
+.rsaip-recipe-card__steps li {
+	margin-bottom: 10px;
+	line-height: 1.7;
+}
+
+.rsaip-recipe-card__notes {
+	margin-top: 20px;
+	padding: 16px 18px;
+	border-radius: 14px;
+	background: #fff7ed;
+	border: 1px solid #fed7aa;
+	line-height: 1.7;
+}
+
+.rsaip-recipe-action-status {
+	font-size: 13px;
+	color: #0f172a;
+	background: #f8fafc;
+	border: 1px solid #e2e8f0;
+	border-radius: 12px;
+	padding: 10px 12px;
+	margin-top: 10px;
+}
+
+@media (max-width: 782px) {
+	.rsaip-recipe-card__hero,
+	.rsaip-recipe-card__grid {
+		grid-template-columns: 1fr;
+	}
+
+	.rsaip-recipe-card__title {
+		font-size: 24px;
+	}
+}

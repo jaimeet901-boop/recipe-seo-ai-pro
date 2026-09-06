@@ -1,0 +1,132 @@
+/* AI Content Calendar — module styles (design-system tokens) */
+.rsaip-cal-toolbar {
+	flex-wrap: wrap;
+	gap: 8px;
+	align-items: center;
+}
+
+.rsaip-app .rsaip-cal-board,
+.rsaip-app .rsaip-cal-day,
+.rsaip-app .rsaip-cal-event {
+	border-radius: var(--rsaip-radius-sm, 8px);
+}
+
+.rsaip-cal-views {
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: 4px;
+}
+
+.rsaip-cal-board {
+	min-height: 320px;
+}
+
+.rsaip-cal-grid {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	gap: 4px;
+}
+
+.rsaip-cal-day {
+	min-height: 110px;
+	border: 1px solid var(--rsaip-border, #dcdcde);
+	background: var(--rsaip-surface, #fff);
+	padding: 6px;
+	vertical-align: top;
+	border-radius: var(--rsaip-radius-sm, 8px);
+}
+
+.rsaip-cal-day.is-today {
+	outline: 2px solid #2271b1;
+}
+
+.rsaip-cal-day.is-outside {
+	background: #f6f7f7;
+	opacity: 0.85;
+}
+
+.rsaip-cal-day.is-drop-target {
+	background: #e7f3ff;
+}
+
+.rsaip-cal-day-num {
+	display: block;
+	font-size: 12px;
+	font-weight: 600;
+	margin-bottom: 4px;
+	color: #1d2327;
+}
+
+.rsaip-cal-event {
+	display: block;
+	width: 100%;
+	margin: 0 0 4px;
+	padding: 4px 6px;
+	border: 0;
+	border-left: 3px solid #2271b1;
+	background: #f0f6fc;
+	color: #1d2327;
+	font-size: 12px;
+	text-align: left;
+	cursor: grab;
+	border-radius: 2px;
+}
+
+.rsaip-cal-event.is-overdue {
+	border-left-color: #d63638;
+	background: #fcf0f1;
+}
+
+.rsaip-cal-event.is-selected {
+	box-shadow: inset 0 0 0 1px #2271b1;
+}
+
+.rsaip-cal-event:active {
+	cursor: grabbing;
+}
+
+.rsaip-cal-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.rsaip-cal-list li {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	padding: 8px 0;
+	border-bottom: 1px solid #dcdcde;
+}
+
+.rsaip-cal-roadmap {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 12px;
+}
+
+.rsaip-cal-roadmap-col {
+	border: 1px solid #dcdcde;
+	background: #fff;
+	padding: 8px;
+	min-height: 180px;
+}
+
+.rsaip-cal-roadmap-col h3 {
+	margin: 0 0 8px;
+	font-size: 13px;
+}
+
+.rsaip-cal-week-hours .rsaip-cal-day {
+	min-height: 160px;
+}
+
+@media (max-width: 960px) {
+	.rsaip-cal-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.rsaip-cal-roadmap {
+		grid-template-columns: 1fr 1fr;
+	}
+}
